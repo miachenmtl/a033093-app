@@ -18,13 +18,17 @@ export default function App() {
           style={{ width: '100vw', height: '100vh' }}
           data={[
             {
-              x: data.x,
-              y: data.y,
-              type: 'scattergl',
+              xy: data,
+              xbounds: [0, 1000000],
+              ybounds: [0, 285],
+              type: 'pointcloud',
               mode: 'markers',
               marker: {
-                size: 2,
-                color: '#59234F'
+                sizemin: 1.5,
+                sizemax: 60,
+                color: '#59234F',
+                opacity: 0.7,
+                blend: true
               },
             }
           ]}
@@ -32,6 +36,11 @@ export default function App() {
           layout={{
             autosize: true,
             title: 'A033093 for n = 1 - 1000000',
+            xaxis: {
+              range: [0, 1000000],
+              hoverformat: ' '
+            },
+            yaxis: { range: [0, 285] },
             plot_bgcolor: '#0A172A',
             paper_bgcolor: '#0A172A',
             hovermode: 'closest',

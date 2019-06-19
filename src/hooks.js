@@ -8,16 +8,12 @@ function useFetch(url) {
     const response = await fetch(url);
     const text = await response.text();
     let dataArray = text.split('\n');
-    let dataObj = {
-      x: [],
-      y: []
-    }
-    for (let i = 0; i < dataArray.length; i += 1) {
+    let data = new Float32Array(2000000);
+    for (let i = 0; i < 1000000; i += 1) {
       let row = dataArray[i].split(',');
-      dataObj.x.push(row[0]);
-      dataObj.y.push(row[1]);
+      data.set(row, 2 * i);
     }
-    setData(dataObj);
+    setData(data);
     setLoading(false);
   }
   useEffect(() => {
